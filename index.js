@@ -12,7 +12,7 @@ module.exports = {
 
   included: function(app) {
     this.options = app.favicons || {};
-    this.options.htmlCallback = function(html) {
+    this.options.callback = function(html) {
       htmlCache = html;
     };
   },
