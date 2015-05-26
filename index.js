@@ -24,7 +24,7 @@ module.exports = {
         patterns: [{
           match: /<\/head>/i,
           replacement: function() {
-            return htmlCache + '\n</head>';
+            return (htmlCache || '') + '\n</head>';
           }
         }]
       });
