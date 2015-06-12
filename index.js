@@ -12,7 +12,7 @@ module.exports = {
 
   included: function(app) {
     this.options = app.favicons || {};
-    this.options.htmlCallback = function(html) {
+    this.options.callback = function(html) {
       htmlCache = html;
     };
   },
@@ -24,7 +24,7 @@ module.exports = {
         patterns: [{
           match: /<\/head>/i,
           replacement: function() {
-            return htmlCache + '\n</head>';
+            return (htmlCache || '') + '\n</head>';
           }
         }]
       });
