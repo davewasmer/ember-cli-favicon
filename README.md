@@ -1,6 +1,6 @@
-# Ember-cli-favicon
+# ember-cli-favicon
 
-This README outlines the details of collaborating on this Ember addon.
+Take a single favicon source file at `public/favicon.png`, and convert to the various formats and sizes required for popular devices and platforms. Also injects the appropriate HTML into your index.html file during the build process.
 
 ## Installation
 
