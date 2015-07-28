@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-favicon",
   "version": "0.0.3",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Automatically build and include all the various platform / device favicon formats from a single source public/favicon.png.",
   "scripts": {
     "start": "ember server",
     "build": "ember build",
