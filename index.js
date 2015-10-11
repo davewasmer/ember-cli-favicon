@@ -4,8 +4,7 @@
 var replace = require('broccoli-replace');
 var favicons = require('broccoli-favicon');
 
-var htmlCache = null;
-
+var htmlCache = '';
 module.exports = {
 
   name: 'ember-cli-favicon',
@@ -13,7 +12,7 @@ module.exports = {
   included: function(app) {
     this.options = app.favicons || {};
     this.options.callback = function(html) {
-      htmlCache = html;
+      htmlCache = html || htmlCache;
     };
   },
 
@@ -24,7 +23,7 @@ module.exports = {
         patterns: [{
           match: /<\/head>/i,
           replacement: function() {
-            return (htmlCache || '') + '\n</head>';
+            return htmlCache + '\n</head>';
           }
         }]
       });
