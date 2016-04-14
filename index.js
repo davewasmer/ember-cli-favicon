@@ -6,8 +6,6 @@ var replace = require('broccoli-replace');
 var Favicons = require('broccoli-favicon');
 var mergeTrees = require('broccoli-merge-trees');
 
-var stew = require('broccoli-stew');
-
 var htmlCache = null;
 
 module.exports = {
