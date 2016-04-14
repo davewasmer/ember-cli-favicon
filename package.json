@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-favicon",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Automatically build and include all the various platform / device favicon formats from a single source public/favicon.png.",
   "scripts": {
     "build": "ember build",
