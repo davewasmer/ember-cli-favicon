@@ -42,7 +42,7 @@
   "dependencies": {
     "broccoli-favicon": "^1.0.0-beta.2",
     "broccoli-merge-trees": "^1.1.1",
-    "broccoli-replace": "^0.11.0",
+    "broccoli-replace": "^0.12.0",
     "ember-cli-babel": "^5.1.6"
   },
   "ember-addon": {
