@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-favicon",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "Automatically build and include all the various platform / device favicon formats from a single source public/favicon.png.",
   "scripts": {
     "build": "ember build",
@@ -40,7 +40,7 @@
     "favicon"
   ],
   "dependencies": {
-    "broccoli-favicon": "^1.0.0-beta.2",
+    "broccoli-favicon": "1.0.0",
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-replace": "^0.12.0",
     "ember-cli-babel": "^5.1.6"
