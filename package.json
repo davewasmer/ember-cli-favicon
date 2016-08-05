@@ -41,7 +41,7 @@
   ],
   "dependencies": {
     "broccoli-favicon": "1.0.0",
-    "broccoli-merge-trees": "^1.1.1",
+    "broccoli-merge-trees": "^1.1.3",
     "broccoli-replace": "^0.12.0",
     "ember-cli-babel": "^5.1.6"
   },
