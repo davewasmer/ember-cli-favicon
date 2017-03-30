@@ -21,7 +21,7 @@ module.exports = {
   postprocessTree(type, tree) {
     if (type === 'all') {
       const favicons = new Favicons(tree, this.options);
-      tree = mergeTrees([ favicons, tree ]);
+      tree = mergeTrees([ favicons, tree ], {overwrite: true});
       return replace(tree, {
         files: [ 'index.html' ],
         patterns: [{
