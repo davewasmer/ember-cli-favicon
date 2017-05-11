@@ -18,8 +18,8 @@ Just save an image to `public/favicon.png` (try to make sure it's at least 256x2
 ```js
 // ember-cli-build.js
 var app = new EmberApp({
-  favicon: {
-    config: {
+  favicons: {
+    faviconsConfig: {
       // these options are passed directly to the favicons module
     }
   }
