@@ -1,3 +1,4 @@
+"use strict";
 /* eslint-env node  */
 /* eslint-env mocha */
 const cp = require('child_process');
