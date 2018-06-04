@@ -11,7 +11,13 @@ module.exports = {
   name: 'ember-cli-favicon',
 
   included(app) {
-    this.options = app.options.favicons || {};
+    let options = app.options;
+
+    let fingerprint = options.fingerprint = options.fingerprint || {};
+    fingerprint.exclude = fingerprint.exclude || [];
+    fingerprint.exclude.push('apple-touch-icon', 'favicon', 'mstile');
+
+    this.options = options.favicons || {};
     this.options.htmlCallback = function(html) {
       htmlCache = html;
     };
