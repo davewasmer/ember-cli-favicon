@@ -32,7 +32,7 @@ module.exports = {
 
   treeForPublic(tree) {
     let faviconTree = new Favicons(this.parentOptions.trees.public, this.parentOptions.favicons);
-    return mergeTrees([ faviconTree, tree ].filter((v) => v), { overwrite: true });
+    return mergeTrees([ faviconTree, tree ].filter(Boolean), { overwrite: true });
   },
 
   postprocessTree(type, tree) {
