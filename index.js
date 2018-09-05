@@ -7,26 +7,36 @@ const mergeTrees = require('broccoli-merge-trees');
 let htmlCache = null;
 
 module.exports = {
-
   name: 'ember-cli-favicon',
 
-  included(app) {
-    let options = app.options;
+  included(parent) {
+    // Support for fingerprint
+    parent.options.fingerprint = parent.options.fingerprint || {};
+    parent.options.fingerprint.exclude = parent.options.fingerprint.exclude || [];
+    parent.options.fingerprint.exclude.push('apple-touch-icon', 'favicon', 'mstile');
 
-    let fingerprint = options.fingerprint = options.fingerprint || {};
-    fingerprint.exclude = fingerprint.exclude || [];
-    fingerprint.exclude.push('apple-touch-icon', 'favicon', 'mstile');
+    // Set success callback
+    parent.options.favicons = parent.options.favicons || {};
 
-    this.options = options.favicons || {};
-    this.options.htmlCallback = function(html) {
+    let currentCallback = parent.options.favicons.htmlCallback || function() {};
+
+    parent.options.favicons.htmlCallback = function(html) {
       htmlCache = html;
+      return currentCallback(...arguments);
     };
+
+    this.parentOptions = parent.options;
+
+    return this._super.included(parent);
+  },
+
+  treeForPublic(tree) {
+    let faviconTree = new Favicons(this.parentOptions.trees.public, this.parentOptions.favicons);
+    return mergeTrees([ faviconTree, tree ].filter(Boolean), { overwrite: true });
   },
 
   postprocessTree(type, tree) {
     if (type === 'all') {
-      const favicons = new Favicons(tree, this.options);
-      tree = mergeTrees([ favicons, tree ], { overwrite: true });
       return replace(tree, {
         files: [ 'index.html' ],
         patterns: [{
@@ -37,7 +47,7 @@ module.exports = {
         }]
       });
     }
+
     return tree;
   }
-
 };
