@@ -36,7 +36,7 @@ Contributing
 
 ### Installation
 
-* `git clone https://github.com/davewasmer/broccoli-favicon`
+* `git clone https://github.com/davewasmer/ember-cli-favicon`
 * `cd ember-cli-favicon`
 * `npm install`
 
