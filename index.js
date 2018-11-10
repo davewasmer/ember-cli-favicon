@@ -7,7 +7,7 @@ const mergeTrees = require('broccoli-merge-trees');
 let htmlCache = null;
 
 module.exports = {
-  name: 'ember-cli-favicon',
+  name: require('./package').name,
 
   included(parent) {
     // Support for fingerprint
