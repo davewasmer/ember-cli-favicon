@@ -20,16 +20,17 @@ Just save an image to `public/favicon.png` (try to make sure it's at least 256x2
 ```js
 // ember-cli-build.js
 var app = new EmberApp({
-  favicons: {
+  'ember-cli-favicon': {
+    onSuccess() {}, // You can call your callback when favicons are generated successfully
+    iconPath: 'favicon.png', // icon path related to `public` folder
+
+    // See the [favicons](https://github.com/itgalaxy/favicons) module for details on the available configuration options.
     faviconsConfig: {
       // these options are passed directly to the favicons module
     }
   }
 });
 ```
-
-See the [favicons](https://github.com/haydenbleasel/favicons) module for details on the available configuration options.
-
 
 Contributing
 ------------------------------------------------------------------------------

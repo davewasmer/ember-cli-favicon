@@ -1,7 +1,7 @@
 'use strict';
 
 const replace = require('broccoli-replace');
-const Favicons = require('broccoli-favicon');
+const Favicon = require('broccoli-favicon').default;
 const mergeTrees = require('broccoli-merge-trees');
 
 let htmlCache = null;
@@ -16,22 +16,22 @@ module.exports = {
     parent.options.fingerprint.exclude.push('apple-touch-icon', 'favicon', 'mstile');
 
     // Set success callback
-    parent.options.favicons = parent.options.favicons || {};
+    this.addonConfig = parent.options['ember-cli-favicons'] || {};
 
-    let currentCallback = parent.options.favicons.htmlCallback || function() {};
+    let currentCallback = this.addonConfig.onSuccess || function() {};
 
-    parent.options.favicons.htmlCallback = function(html) {
+    this.addonConfig.onSuccess = function(html) {
       htmlCache = html;
       return currentCallback(...arguments);
     };
 
-    this.parentOptions = parent.options;
+    this.publicTree = parent.options.trees.public;
 
     return this._super.included(parent);
   },
 
   treeForPublic(tree) {
-    let faviconTree = new Favicons(this.parentOptions.trees.public, this.parentOptions.favicons);
+    let faviconTree = new Favicon(this.publicTree, this.addonConfig)
     return mergeTrees([ faviconTree, tree ].filter(Boolean), { overwrite: true });
   },
 
