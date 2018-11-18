@@ -14,15 +14,27 @@ module.exports = {
     this._super.included.apply(this, arguments);
 
     // Set default options
+    let isProductionEnv = parent.env === 'production'
+
     let defaultOptions = {
-      enabled: !['development', 'test'].includes(parent.env),
+      enabled: parent.env != 'test',
       faviconsConfig: {
         path: parent.project.config(parent.env).rootUrl,
         appName: parent.project.pkg.name,
         appShortName: parent.project.pkg.name,
         appDescription: parent.project.pkg.description,
         developerName: parent.project.pkg.author,
-        version: parent.project.version
+        version: parent.project.version,
+        icons: {
+          favicons: true,
+          android: isProductionEnv,
+          appleIcon: isProductionEnv,
+          appleStartup: isProductionEnv,
+          coast: isProductionEnv,
+          firefox: isProductionEnv,
+          windows: isProductionEnv,
+          yandex: isProductionEnv
+        }
       }
     }
 
