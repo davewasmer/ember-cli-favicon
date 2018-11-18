@@ -13,13 +13,9 @@ module.exports = {
   included(parent) {
     this._super.included.apply(this, arguments);
 
-    // Support for fingerprint
-    parent.options.fingerprint = parent.options.fingerprint || {};
-    parent.options.fingerprint.exclude = parent.options.fingerprint.exclude || [];
-    parent.options.fingerprint.exclude.push('apple-touch-icon', 'favicon', 'mstile');
-
     // Set default options
     let defaultOptions = {
+      enabled: !['development', 'test'].includes(parent.env),
       faviconsConfig: {
         path: parent.project.config(parent.env).rootUrl,
         appName: parent.project.pkg.name,
@@ -40,16 +36,25 @@ module.exports = {
       return currentCallback(...arguments);
     };
 
+    // Support for fingerprint
+    parent.options.fingerprint = parent.options.fingerprint || {};
+    parent.options.fingerprint.exclude = parent.options.fingerprint.exclude || [];
+    parent.options.fingerprint.exclude.push('apple-touch-icon', 'favicon', 'mstile');
+
     this.publicTree = parent.options.trees.public;
   },
 
   treeForPublic(tree) {
-    let faviconTree = new Favicon(this.publicTree, this.addonConfig)
-    return mergeTrees([ faviconTree, tree ].filter(Boolean), { overwrite: true });
+    if (this.addonConfig.enabled) {
+      let faviconTree = new Favicon(this.publicTree, this.addonConfig)
+      return mergeTrees([ faviconTree, tree ].filter(Boolean), { overwrite: true });
+    } else {
+      return tree;
+    }
   },
 
   postprocessTree(type, tree) {
-    if (type === 'all') {
+    if (type === 'all' && this.addonConfig.enabled) {
       return replace(tree, {
         files: [ 'index.html' ],
         patterns: [{
