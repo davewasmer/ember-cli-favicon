@@ -3,6 +3,7 @@
 const replace = require('broccoli-replace');
 const Favicon = require('broccoli-favicon').default;
 const mergeTrees = require('broccoli-merge-trees');
+const deepMerge = require('lodash.merge');
 
 let htmlCache = null;
 
@@ -10,14 +11,28 @@ module.exports = {
   name: require('./package').name,
 
   included(parent) {
+    this._super.included.apply(this, arguments);
+
     // Support for fingerprint
     parent.options.fingerprint = parent.options.fingerprint || {};
     parent.options.fingerprint.exclude = parent.options.fingerprint.exclude || [];
     parent.options.fingerprint.exclude.push('apple-touch-icon', 'favicon', 'mstile');
 
-    // Set success callback
-    this.addonConfig = parent.options['ember-cli-favicons'] || {};
+    // Set default options
+    let defaultOptions = {
+      faviconsConfig: {
+        path: parent.project.config(parent.env).rootUrl,
+        appName: parent.project.pkg.name,
+        appShortName: parent.project.pkg.name,
+        appDescription: parent.project.pkg.description,
+        developerName: parent.project.pkg.author,
+        version: parent.project.version
+      }
+    }
 
+    this.addonConfig = deepMerge({}, defaultOptions, (parent.options['ember-cli-favicons'] || {}));
+
+    // Set success callback
     let currentCallback = this.addonConfig.onSuccess || function() {};
 
     this.addonConfig.onSuccess = function(html) {
@@ -26,8 +41,6 @@ module.exports = {
     };
 
     this.publicTree = parent.options.trees.public;
-
-    return this._super.included(parent);
   },
 
   treeForPublic(tree) {
