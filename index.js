@@ -26,7 +26,7 @@ module.exports = {
       }
     }
 
-    this.addonConfig = deepMerge({}, defaultOptions, (parent.options['ember-cli-favicons'] || {}));
+    this.addonConfig = deepMerge({}, defaultOptions, (parent.options['ember-cli-favicon'] || {}));
 
     // Set success callback
     let currentCallback = this.addonConfig.onSuccess || function() {};
