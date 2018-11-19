@@ -1,5 +1,15 @@
 # Change Log
 
+## [v2.0.0](https://github.com/davewasmer/ember-cli-favicon/tree/v2.0.0) (2018-11-19)
+[Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v1.1.1...v2.0.0)
+
+**Merged pull requests:**
+
+- Update to new broccoli-favicon [\#76](https://github.com/davewasmer/ember-cli-favicon/pull/76) ([Exelord](https://github.com/Exelord))
+
+## [v1.1.1](https://github.com/davewasmer/ember-cli-favicon/tree/v1.1.1) (2018-11-17)
+[Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v1.1.0...v1.1.1)
+
 ## [v1.1.0](https://github.com/davewasmer/ember-cli-favicon/tree/v1.1.0) (2018-11-17)
 [Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v1.0.0...v1.1.0)
 
