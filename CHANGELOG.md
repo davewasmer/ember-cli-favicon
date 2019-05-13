@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.1.0](https://github.com/davewasmer/ember-cli-favicon/tree/v2.1.0) (2019-05-13)
+[Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v2.0.0...v2.1.0)
+
+**Merged pull requests:**
+
+- Upgrade pacakges [\#79](https://github.com/davewasmer/ember-cli-favicon/pull/79) ([Exelord](https://github.com/Exelord))
+
 ## [v2.0.0](https://github.com/davewasmer/ember-cli-favicon/tree/v2.0.0) (2018-11-19)
 [Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v1.1.1...v2.0.0)
 
