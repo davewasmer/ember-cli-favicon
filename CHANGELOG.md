@@ -1,5 +1,17 @@
 # Change Log
 
+## [v2.1.1](https://github.com/davewasmer/ember-cli-favicon/tree/v2.1.1) (2019-06-05)
+[Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v2.1.0...v2.1.1)
+
+**Fixed bugs:**
+
+- Fix fingerprinting [\#82](https://github.com/davewasmer/ember-cli-favicon/pull/82) ([Exelord](https://github.com/Exelord))
+
+**Closed issues:**
+
+- Build Error [\#81](https://github.com/davewasmer/ember-cli-favicon/issues/81)
+- Fingerprints not added to the manifests [\#78](https://github.com/davewasmer/ember-cli-favicon/issues/78)
+
 ## [v2.1.0](https://github.com/davewasmer/ember-cli-favicon/tree/v2.1.0) (2019-05-13)
 [Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v2.0.0...v2.1.0)
 
