@@ -51,7 +51,16 @@ module.exports = {
     // Support for fingerprint
     parent.options.fingerprint = parent.options.fingerprint || {};
     parent.options.fingerprint.exclude = parent.options.fingerprint.exclude || [];
-    parent.options.fingerprint.exclude.push('apple-touch-icon', 'favicon', 'mstile');
+    parent.options.fingerprint.exclude.push(
+      'android-chrome',
+      'apple-touch-icon',
+      'apple-touch-startup-image',
+      'coast',
+      'favicon',
+      'mstile',
+      'firefox_app',
+      'yandex-browser'
+    );
 
     this.publicTree = parent.options.trees.public;
   },
