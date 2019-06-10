@@ -22,10 +22,10 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "broccoli-favicon": "~2.1.0",
+    "broccoli-favicon": "~2.1.1",
     "broccoli-merge-trees": "3.0.2",
-    "broccoli-replace": "0.12.0",
-    "ember-cli-babel": "7.5.0",
+    "broccoli-string-replace": "^0.1.2",
+    "ember-cli-babel": "7.7.3",
     "lodash.merge": "~4.6.1"
   },
   "devDependencies": {

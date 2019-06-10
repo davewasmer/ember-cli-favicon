@@ -1,6 +1,6 @@
 'use strict';
 
-const replace = require('broccoli-replace');
+const replace = require('broccoli-string-replace');
 const Favicon = require('broccoli-favicon').default;
 const mergeTrees = require('broccoli-merge-trees');
 const deepMerge = require('lodash.merge');
@@ -81,7 +81,7 @@ module.exports = {
         patterns: [{
           match: /<\/head>/i,
           replacement: function() {
-            return (htmlCache || []).join('\n') + '\n</head>';
+            return '  ' + (htmlCache || []).join('\n    ') + '\n  </head>';
           }
         }]
       });
