@@ -1,5 +1,20 @@
 # Change Log
 
+## [v2.2.0](https://github.com/davewasmer/ember-cli-favicon/tree/v2.2.0) (2019-06-10)
+[Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v2.1.1...v2.2.0)
+
+**Implemented enhancements:**
+
+- Replace broccoli-replace [\#83](https://github.com/davewasmer/ember-cli-favicon/pull/83) ([Exelord](https://github.com/Exelord))
+
+**Closed issues:**
+
+- Can we do this without coffeescript? [\#77](https://github.com/davewasmer/ember-cli-favicon/issues/77)
+
+**Merged pull requests:**
+
+- Upgrade pacakges [\#79](https://github.com/davewasmer/ember-cli-favicon/pull/79) ([Exelord](https://github.com/Exelord))
+
 ## [v2.1.1](https://github.com/davewasmer/ember-cli-favicon/tree/v2.1.1) (2019-06-05)
 [Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v2.1.0...v2.1.1)
 
@@ -14,10 +29,6 @@
 
 ## [v2.1.0](https://github.com/davewasmer/ember-cli-favicon/tree/v2.1.0) (2019-05-13)
 [Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v2.0.0...v2.1.0)
-
-**Merged pull requests:**
-
-- Upgrade pacakges [\#79](https://github.com/davewasmer/ember-cli-favicon/pull/79) ([Exelord](https://github.com/Exelord))
 
 ## [v2.0.0](https://github.com/davewasmer/ember-cli-favicon/tree/v2.0.0) (2018-11-19)
 [Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v1.1.1...v2.0.0)
