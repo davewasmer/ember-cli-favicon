@@ -74,19 +74,12 @@ module.exports = {
     }
   },
 
-  postprocessTree(type, tree) {
-    if (type === 'all' && this.addonConfig.enabled) {
-      return replace(tree, {
-        files: [ 'index.html' ],
-        patterns: [{
-          match: /<\/head>/i,
-          replacement: function() {
-            return '  ' + (htmlCache || []).join('\n    ') + '\n  </head>';
-          }
-        }]
-      });
+  contentFor(type, config) {
+    if (
+      this.addonConfig.enabled &&
+      type === 'head-footer'
+    ) {
+      return '  ' + (htmlCache || []).join('\n    ') + '\n';
     }
-
-    return tree;
-  }
+  },
 };
