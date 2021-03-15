@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
       - name: Lint
-        run: npm lint
+        run: npm run lint
       - name: Test
         run: npm test
 
@@ -69,4 +69,4 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
       - name: Test
-        run: npm ember try:one ${{ matrix.scenario }} --- npm test
+        run: npx ember try:one ${{ matrix.scenario }} --- npm test
