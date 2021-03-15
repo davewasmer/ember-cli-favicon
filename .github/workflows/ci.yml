@@ -6,73 +6,168 @@ on:
       - master
   pull_request:
 
+env:
+  NODE_VERSION: 10
+
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '${{ env.NODE_VERSION }}'
+
+      - name: Get package manager's global cache path
+        id: global-cache-dir-path
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Cache package manager's global cache and node_modules
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.global-cache-dir-path.outputs.dir }}
+            node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-${{hashFiles('**/package-lock.json')}}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-
+
+      - name: Install Dependencies
+        run: npm ci
+        if: |
+          steps.cache-dependencies.outputs.cache-hit != 'true'
+
+      - name: Lint
+        run: npm run lint
+
   test:
     name: Tests
     runs-on: ubuntu-latest
+    needs: lint
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup node.js
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
         with:
-          node-version: 10
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-      - name: Lint
-        run: npm run lint
-      - name: Test
-        run: npm test
+          fetch-depth: 1
 
-  test-no-lock:
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '${{ env.NODE_VERSION }}'
+
+      - name: Get package manager's global cache path
+        id: global-cache-dir-path
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Cache package manager's global cache and node_modules
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.global-cache-dir-path.outputs.dir }}
+            node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-${{hashFiles('**/package-lock.json')}}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-
+
+      - name: Install Dependencies
+        run: npm ci
+        if: |
+          steps.cache-dependencies.outputs.cache-hit != 'true'
+
+      - name: Test
+        run: npm run test
+
+  floating-dependencies:
     name: Floating Dependencies
     runs-on: ubuntu-latest
-    needs:
-      - test
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
-      - name: Test
-        run: npm test
+    needs: lint
 
-  test-try:
-    name: Additional Tests
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '${{ env.NODE_VERSION }}'
+
+      - name: Get package manager's global cache path
+        id: global-cache-dir-path
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Cache package manager's global cache and node_modules
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.global-cache-dir-path.outputs.dir }}
+            node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-${{hashFiles('**/package-lock.json')}}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-
+
+      - name: Install Dependencies
+        run: npm install --no-package-lock
+
+      - name: Test
+        run: npm run test
+
+  try-scenarios:
+    name: Tests - ${{ matrix.ember-try-scenario }}
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.continue-on-error }}
-    needs:
-      - test
+    continue-on-error: ${{ matrix.allow-failure }}
+    needs: test
+
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        scenario:
+        ember-try-scenario:
           - ember-lts-3.16
           - ember-lts-3.20
           - ember-release
           - ember-default-with-jquery
           - ember-classic
-        continue-on-error: [false]
+          - ember-beta
+        allow-failure: [false]
         include:
-          - scenario: ember-beta
-            continue-on-error: true
-          - scenario: ember-canary
-            continue-on-error: true
+          - ember-try-scenario: ember-canary
+            allow-failure: true
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-      - name: Test
-        run: npx ember try:one ${{ matrix.scenario }} --- npm test
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+
+    - uses: actions/setup-node@v2-beta
+      with:
+        node-version: '${{ env.NODE_VERSION }}'
+
+    - name: Get package manager's global cache path
+      id: global-cache-dir-path
+      run: echo "::set-output name=dir::$(pm config get cache)"
+
+    - name: Cache package manager's global cache and node_modules
+      id: cache-dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.global-cache-dir-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-${{ matrix.node-version }}-${{hashFiles('**/package-lock.json')}}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.node-version }}-
+
+    - name: Install Dependencies
+      run: npm ci
+      if: |
+        steps.cache-dependencies.outputs.cache-hit != 'true'
+
+    - name: Test
+      env:
+        EMBER_TRY_SCENARIO: ${{ matrix.ember-try-scenario }}
+      run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --- npm test
