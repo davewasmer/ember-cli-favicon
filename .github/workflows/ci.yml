@@ -61,9 +61,9 @@ jobs:
           - ember-classic
         continue-on-error: [false]
         include:
-          - scenario:
-              - ember-beta
-              - ember-canary
+          - scenario: ember-beta
+            continue-on-error: true
+          - scenario: ember-canary
             continue-on-error: true
     steps:
       - name: Checkout code
