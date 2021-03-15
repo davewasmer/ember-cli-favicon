@@ -19,7 +19,7 @@ module.exports = {
     let defaultOptions = {
       enabled: parent.env != 'test',
       faviconsConfig: {
-        path: parent.project.config(parent.env).rootUrl,
+        path: parent.project.config(parent.env).rootURL,
         appName: parent.project.pkg.name,
         appShortName: parent.project.pkg.name,
         appDescription: parent.project.pkg.description,
