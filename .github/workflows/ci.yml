@@ -51,6 +51,7 @@ jobs:
     needs:
       - test
     strategy:
+      fail-fast: false
       matrix:
         scenario:
           - ember-lts-3.16
@@ -58,6 +59,7 @@ jobs:
           - ember-release
           - ember-default-with-jquery
           - ember-classic
+        continue-on-error: [false]
         include:
           - scenario:
               - ember-beta
