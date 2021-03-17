@@ -178,6 +178,9 @@ jobs:
       if: |
         steps.cache-dependencies.outputs.cache-hit != 'true'
 
+    - name: WHAT NPM IS IN USE?!
+      run: npm -v
+
     - name: Test
       env:
         EMBER_TRY_SCENARIO: ${{ matrix.ember-try-scenario }}
