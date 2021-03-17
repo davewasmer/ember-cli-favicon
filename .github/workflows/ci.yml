@@ -36,9 +36,9 @@ jobs:
           path: |
             ${{ steps.global-cache-dir-path.outputs.dir }}
             node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-${{hashFiles('**/package-lock.json')}}
+          key: ${{ runner.os }}-${{ env.NODE_VERSION }}-${{hashFiles('**/package-lock.json')}}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-
+            ${{ runner.os }}-${{ env.NODE_VERSION }}-
 
       - name: Install Dependencies
         run: npm ci
@@ -75,9 +75,9 @@ jobs:
           path: |
             ${{ steps.global-cache-dir-path.outputs.dir }}
             node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-${{hashFiles('**/package-lock.json')}}
+          key: ${{ runner.os }}-${{ env.NODE_VERSION }}-${{hashFiles('**/package-lock.json')}}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-
+            ${{ runner.os }}-${{ env.NODE_VERSION }}-
 
       - name: Install Dependencies
         run: npm ci
@@ -115,9 +115,9 @@ jobs:
           path: |
             ${{ steps.global-cache-dir-path.outputs.dir }}
             node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-${{hashFiles('**/package-lock.json')}}
+          key: ${{ runner.os }}-${{ env.NODE_VERSION }}-${{hashFiles('**/package-lock.json')}}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-
+            ${{ runner.os }}-${{ env.NODE_VERSION }}-
 
       - name: Install Dependencies
         run: npm install --no-package-lock
@@ -169,9 +169,9 @@ jobs:
         path: |
           ${{ steps.global-cache-dir-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-${{ matrix.node-version }}-${{hashFiles('**/package-lock.json')}}
+        key: ${{ runner.os }}-${{ env.NODE_VERSION }}-${{hashFiles('**/package-lock.json')}}
         restore-keys: |
-          ${{ runner.os }}-${{ matrix.node-version }}-
+          ${{ runner.os }}-${{ env.NODE_VERSION }}-
 
     - name: Install Dependencies
       run: npm ci
