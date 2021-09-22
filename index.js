@@ -14,7 +14,7 @@ module.exports = {
     this._super.included.apply(this, arguments);
 
     // Set default options
-    let isProductionEnv = parent.env === 'production'
+    let isProductionEnv = parent.env === 'production';
 
     let defaultOptions = {
       enabled: parent.env != 'test',
@@ -33,24 +33,29 @@ module.exports = {
           coast: isProductionEnv,
           firefox: isProductionEnv,
           windows: isProductionEnv,
-          yandex: isProductionEnv
-        }
-      }
-    }
+          yandex: isProductionEnv,
+        },
+      },
+    };
 
-    this.addonConfig = deepMerge({}, defaultOptions, (parent.options['ember-cli-favicon'] || {}));
+    this.addonConfig = deepMerge(
+      {},
+      defaultOptions,
+      parent.options['ember-cli-favicon'] || {}
+    );
 
     // Set success callback
-    let currentCallback = this.addonConfig.onSuccess || function() {};
+    let currentCallback = this.addonConfig.onSuccess || function () {};
 
-    this.addonConfig.onSuccess = function(html) {
+    this.addonConfig.onSuccess = function (html) {
       htmlCache = html;
       return currentCallback(...arguments);
     };
 
     // Support for fingerprint
     parent.options.fingerprint = parent.options.fingerprint || {};
-    parent.options.fingerprint.exclude = parent.options.fingerprint.exclude || [];
+    parent.options.fingerprint.exclude =
+      parent.options.fingerprint.exclude || [];
     parent.options.fingerprint.exclude.push(
       'android-chrome',
       'apple-touch-icon',
@@ -67,8 +72,10 @@ module.exports = {
 
   treeForPublic(tree) {
     if (this.addonConfig.enabled) {
-      let faviconTree = new Favicon(this.publicTree, this.addonConfig)
-      return mergeTrees([ faviconTree, tree ].filter(Boolean), { overwrite: true });
+      let faviconTree = new Favicon(this.publicTree, this.addonConfig);
+      return mergeTrees([faviconTree, tree].filter(Boolean), {
+        overwrite: true,
+      });
     } else {
       return tree;
     }
@@ -77,16 +84,18 @@ module.exports = {
   postprocessTree(type, tree) {
     if (type === 'all' && this.addonConfig.enabled) {
       return replace(tree, {
-        files: [ 'index.html' ],
-        patterns: [{
-          match: /<\/head>/i,
-          replacement: function() {
-            return '  ' + (htmlCache || []).join('\n    ') + '\n  </head>';
-          }
-        }]
+        files: ['index.html'],
+        patterns: [
+          {
+            match: /<\/head>/i,
+            replacement: function () {
+              return '  ' + (htmlCache || []).join('\n    ') + '\n  </head>';
+            },
+          },
+        ],
       });
     }
 
     return tree;
-  }
+  },
 };

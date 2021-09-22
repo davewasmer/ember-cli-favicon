@@ -2,11 +2,16 @@
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberAddon(defaults, {
     'ember-cli-favicon': {
-      enabled: true // always
-    }
+      enabled: true, // always
+    },
+    plugins: [
+      '@babel/plugin-proposal-class-properties',
+      '@babel/plugin-proposal-private-methods',
+      ['@babel/plugin-proposal-private-property-in-object', { loose: true }], // used to silence the babel "loose" warning
+    ],
   });
 
   /*
@@ -16,5 +21,12 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
 
-  return app.toTree();
+  const { maybeEmbroider } = require('@embroider/test-setup');
+  return maybeEmbroider(app, {
+    skipBabel: [
+      {
+        package: 'qunit',
+      },
+    ],
+  });
 };

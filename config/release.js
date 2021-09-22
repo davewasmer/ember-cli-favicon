@@ -11,11 +11,13 @@ function generateChangelog(project, version) {
   let content = `future-release=${version}\n`;
   let generatorPath = path.join(project.root, '.github_changelog_generator');
 
-  return new Promise(function(resolve, reject) {
-    fs.writeFile(generatorPath, content, (err) => err ? reject(err) : resolve());
+  return new Promise(function (resolve, reject) {
+    fs.writeFile(generatorPath, content, (err) =>
+      err ? reject(err) : resolve()
+    );
   }).then(() => {
     return _commandPromise('github_changelog_generator');
-  })
+  });
 }
 
 function regeneratePackageLock() {
@@ -24,20 +26,24 @@ function regeneratePackageLock() {
   let removeCommand = `rm -rf tmp dist node_modules package-lock.json`;
   let installCommand = `npm i`;
 
-  return _commandPromise(removeCommand).then(() => _commandPromise(installCommand));
+  return _commandPromise(removeCommand).then(() =>
+    _commandPromise(installCommand)
+  );
 }
 
 function _commandPromise(command) {
-  return new Promise(function(resolve, reject) {
-    exec(command, (err) => err ? reject(err) : resolve());
+  return new Promise(function (resolve, reject) {
+    exec(command, (err) => (err ? reject(err) : resolve()));
   });
 }
 
 // For details on each option run `ember help release`
 module.exports = {
-  message: "%@",
+  message: '%@',
 
-  beforeCommit: function(project, versions) {
-    return generateChangelog(project, versions.next).then(() => regeneratePackageLock());
-  }
+  beforeCommit: function (project, versions) {
+    return generateChangelog(project, versions.next).then(() =>
+      regeneratePackageLock()
+    );
+  },
 };
