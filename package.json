@@ -24,12 +24,12 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "broccoli-favicon": "~2.1.1",
-    "broccoli-merge-trees": "3.0.2",
+    "broccoli-favicon": "^3.0.0",
+    "broccoli-merge-trees": "^4.2.0",
     "broccoli-string-replace": "^0.1.2",
     "ember-cli-babel": "7.22.1",
     "ember-cli-htmlbars": "^5.3.1",
-    "lodash.merge": "~4.6.1"
+    "lodash.merge": "~4.6.2"
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
