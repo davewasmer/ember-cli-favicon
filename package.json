@@ -23,7 +23,7 @@
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
     "test": "mocha tests/build.js",
-    "test:ember": "mocha tests/build.js",
+    "test:ember": "ember test",
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
@@ -54,7 +54,7 @@
     "ember-page-title": "^6.2.2",
     "ember-qunit": "5.1.4",
     "ember-resolver": "8.0.2",
-    "ember-source": "~3.28.0",
+    "ember-source": "~3.20.5",
     "ember-source-channel-url": "3.0.0",
     "ember-template-lint": "^3.6.0",
     "ember-try": "1.4.0",
@@ -76,7 +76,7 @@
     "node": "12.* || 14.* || >= 16"
   },
   "ember": {
-    "edition": "octane"
+    "edition": "classic"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
