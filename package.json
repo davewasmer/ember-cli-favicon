@@ -23,7 +23,7 @@
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
     "test": "mocha tests/build.js",
-    "test:ember": "ember test",
+    "test:ember": "mocha tests/build.js",
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
