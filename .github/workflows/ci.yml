@@ -51,7 +51,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        browser: [chrome]
 
     steps:
       - uses: actions/checkout@v2
@@ -81,7 +80,7 @@ jobs:
         if: |
           steps.cache-dependencies.outputs.cache-hit != 'true'
       - name: Test
-        run: npm run-script test:ember --launch ${{ matrix.browser }}
+        run: npm run-script test
 
   floating-dependencies:
     name: Floating Dependencies
@@ -91,7 +90,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        browser: [chrome]
 
     steps:
       - uses: actions/checkout@v2
@@ -120,7 +118,7 @@ jobs:
         run: npm install --no-package-lock
 
       - name: Test
-        run: npm run-script test:ember --launch ${{ matrix.browser }}
+        run: npm run-script test
 
   try-scenarios:
     name: Tests - ${{ matrix.ember-try-scenario }}
