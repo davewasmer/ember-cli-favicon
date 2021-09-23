@@ -1,6 +1,5 @@
 'use strict';
 
-const replace = require('broccoli-string-replace');
 const Favicon = require('broccoli-favicon').default;
 const mergeTrees = require('broccoli-merge-trees');
 const deepMerge = require('lodash.merge');
@@ -81,21 +80,9 @@ module.exports = {
     }
   },
 
-  postprocessTree(type, tree) {
-    if (type === 'all' && this.addonConfig.enabled) {
-      return replace(tree, {
-        files: ['index.html'],
-        patterns: [
-          {
-            match: /<\/head>/i,
-            replacement: function () {
-              return '  ' + (htmlCache || []).join('\n    ') + '\n  </head>';
-            },
-          },
-        ],
-      });
+  contentFor(type) {
+    if (this.addonConfig.enabled && type === 'head-footer') {
+      return '  ' + (htmlCache || []).join('\n    ') + '\n';
     }
-
-    return tree;
   },
 };
