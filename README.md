@@ -1,6 +1,6 @@
 # ember-cli-favicon
 
-[![Build Status](https://travis-ci.org/davewasmer/ember-cli-favicon.svg?branch=master)](https://travis-ci.org/davewasmer/ember-cli-favicon)
+[![CI](https://github.com/davewasmer/ember-cli-favicon/actions/workflows/ci.yml/badge.svg)](https://github.com/davewasmer/ember-cli-favicon/actions/workflows/ci.yml)
 [![Dependency Status](https://david-dm.org/davewasmer/ember-cli-favicon.svg)](https://david-dm.org/davewasmer/ember-cli-favicon.svg)
 
 Take a single favicon source file at `public/favicon.png`, and convert to the various formats and sizes required for popular devices and platforms. Also injects the appropriate HTML into your index.html file during the build process.
