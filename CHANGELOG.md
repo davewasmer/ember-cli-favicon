@@ -1,5 +1,21 @@
 # Change Log
 
+## [v3.0.0](https://github.com/davewasmer/ember-cli-favicon/tree/v3.0.0) (2021-10-17)
+
+[Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v2.2.0...v3.0.0)
+
+**Closed issues:**
+
+- rootUrl used for favicon path instead of rootURL [\#84](https://github.com/davewasmer/ember-cli-favicon/issues/84)
+- icons not rendering on ember-cli-title installation [\#80](https://github.com/davewasmer/ember-cli-favicon/issues/80)
+
+**Merged pull requests:**
+
+- Update dependencies [\#104](https://github.com/davewasmer/ember-cli-favicon/pull/104) ([Exelord](https://github.com/Exelord))
+- replace travis badge [\#103](https://github.com/davewasmer/ember-cli-favicon/pull/103) ([miguelcobain](https://github.com/miguelcobain))
+- update broccoli-favicon and support embroider [\#102](https://github.com/davewasmer/ember-cli-favicon/pull/102) ([miguelcobain](https://github.com/miguelcobain))
+- \[Breaking\] Drop support for Ember \< 3.16, Node 6+8 [\#95](https://github.com/davewasmer/ember-cli-favicon/pull/95) ([simonihmig](https://github.com/simonihmig))
+
 ## [v2.2.0](https://github.com/davewasmer/ember-cli-favicon/tree/v2.2.0) (2019-06-10)
 [Full Changelog](https://github.com/davewasmer/ember-cli-favicon/compare/v2.1.1...v2.2.0)
 
